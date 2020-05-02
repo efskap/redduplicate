@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Redduplicate</title>
+    <meta name="description" content="Migrates stuff between Reddit accounts"/>
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -226,9 +227,6 @@
 
         }
         update(steps=null, text=null) {
-            console.log('update');
-            console.log('steps', steps);
-            console.log('text',text);
             if(steps!==null) {
                 this.steps += steps;
             }
