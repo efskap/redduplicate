@@ -7,11 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <style>
-        progress::-webkit-progress-value {
-            transition : width 1s ease;
-        }
-    </style>
 </head>
 <body>
 <section class="section">
@@ -56,12 +51,12 @@
                 </div>
             </div>
             <hr>
-            <button :class="{'is-loading': tasks.subTrans.isActive()}" @click="transferSubreddits"
+            <button :class="{'is-loading': tasks.subTrans.isActive(), 'is-success': tasks.subTrans.isDone()}" @click="transferSubreddits"
                     class="button is-medium is-link">
-                <span>Transfer <strong>Subreddits</strong> </span></button>
-            <button :class="{'is-loading': tasks.preTrans.isActive()}" @click="transferPrefs"
+                <span>Transfer <strong>Subreddits</strong> <i v-if="tasks.subTrans.isDone()" class="fa fa-check"></i></span></button>
+            <button :class="{'is-loading': tasks.preTrans.isActive(), 'is-success': tasks.preTrans.isDone()}" @click="transferPrefs"
                     class="button is-medium is-link">
-                <span>Transfer <strong>Preferences</strong> </span></button>
+                <span>Transfer <strong>Preferences</strong> <i v-if="tasks.preTrans.isDone()" class="fa fa-check"></i> </span></button>
         </div>
         <div class="box" v-for="task in activeTasks">
             <progress class="progress is-info" :value="task.steps" :max="task.maxSteps">{{task.text}}</progress>
@@ -221,6 +216,10 @@
         isActive() {
             return this.steps < this.maxSteps;
         }
+
+        isDone() {
+            return this.steps > 0 && !this.isActive();
+        }
         toString() {
             return (this.text?this.text + ' ':'') +
                     `[ ${this.steps} / ${this.maxSteps} ]`;
@@ -306,18 +305,19 @@
                 this.tasks.subTrans.done();
             },
             async transferPrefs() {
-                this.prefTransInProgress = true;
+                this.tasks.preTrans = new Task(2);
                 let srcPrefs = await this.roles.src.account.getPrefs();
                 console.log(srcPrefs);
+                this.tasks.preTrans.update(1);
                 let resp = await this.roles.dst.account.setPrefs(srcPrefs);
                 console.log(resp);
-                this.prefTransInProgress = false;
+                this.tasks.preTrans.done();
             }
         },
 
     });
 
-    const client_id = 'Vv6BsRq-n85u5A';
+    const client_id = window.location.origin.includes("netlify") ? 'Vv6BsRq-n85u5A' : '_VreirUvzr8nzA';
     const base = 'https://oauth.reddit.com/';
 
     class Account {
@@ -426,6 +426,7 @@
             if (forbidden.length > 0) {
                 alert(forbidden.join(',') + " are forbidden (quarantined, private, etc)")
             }
+            callback(forbidden.length);
             this.getSubscribed();
         }
 
