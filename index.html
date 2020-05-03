@@ -6,8 +6,10 @@
     <title>Redduplicate</title>
     <meta name="description" content="Migrates stuff between Reddit accounts"/>
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/bulma-prefers-dark" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
 </head>
 <body>
 <section class="section">
@@ -134,7 +136,7 @@
             },
 
             startLogin() {
-                const redirectUrl = window.location.origin;
+                const redirectUrl = window.location.origin + '/return.html';
                 const state = this.role;
                 let popup = window.open(`https://www.reddit.com/api/v1/authorize?client_id=${client_id}&response_type=code&state=${state}&redirect_uri=${redirectUrl}&duration=temporary&scope=account,mysubreddits,subscribe,identity`, '_blank');
                 if (popup === null) {
