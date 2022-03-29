@@ -1,91 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>Redduplicate</title>
-    <meta name="description" content="Migrates stuff between Reddit accounts"/>
-    <link href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/bulma-prefers-dark" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <style>
-        .github-corner svg {
-            fill: #151513;
-            color:white;
-        }
-        @media (prefers-color-scheme: dark) {
-            .github-corner svg {
-                fill: #eee;
-                color:black;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>Redduplicate</title>
+  <meta name="description" content="Migrates stuff between Reddit accounts" />
+  <link href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/bulma-prefers-dark" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.13/dist/vue.min.js"></script>
+  <style>
+    .github-corner svg {
+      fill: #151513;
+      color: white;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .github-corner svg {
+        fill: #eee;
+        color: black;
+      }
+    }
+  </style>
 
 </head>
+
 <body>
-<a href="https://github.com/efskap/redduplicate" class="github-corner" aria-label="View source on GitHub"><svg width="64" height="64" viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
-<section class="section">
+  <a href="https://github.com/efskap/redduplicate" class="github-corner" aria-label="View source on GitHub"><svg
+      width="64" height="64" viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;"
+      aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path
+        d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+        fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path
+        d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+        fill="currentColor" class="octo-body"></path>
+    </svg></a>
+  <style>
+    .github-corner:hover .octo-arm {
+      animation: octocat-wave 560ms ease-in-out
+    }
+
+    @keyframes octocat-wave {
+
+      0%,
+      100% {
+        transform: rotate(0)
+      }
+
+      20%,
+      60% {
+        transform: rotate(-25deg)
+      }
+
+      40%,
+      80% {
+        transform: rotate(10deg)
+      }
+    }
+
+    @media (max-width:500px) {
+      .github-corner:hover .octo-arm {
+        animation: none
+      }
+
+      .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+      }
+    }
+  </style>
+  <section class="section">
     <div class="container" id="app">
-        <h1 class="title">
-            Redduplicate
-        </h1>
-        <p class="subtitle">
-            Migrates stuff between Reddit accounts
-        </p>
-        <div class="columns">
-            <div class="column" >
-                <account-card :account="roles.src.account" role="src" v-on:login="onLogin" v-on:logout="logout"
-                              v-on:timedout="logout">
-                </account-card>
-            </div>
-            <div class="column is-narrow has-text-centered" style="display: flex; align-items: center; justify-content: center;" >
-                    <button @click="reverseAccounts" class="button" aria-label="swap accounts" title="swap"><span><i class="fas fa-exchange-alt"></i></span></button>
-            </div>
-            <div class="column" >
-                <account-card :account="roles.dst.account" role="dst" v-on:login="onLogin" v-on:logout="logout"
-                              v-on:timedout="logout">
-                </account-card>
-            </div>
+      <h1 class="title">
+        Redduplicate
+      </h1>
+      <p class="subtitle">
+        Migrates stuff between Reddit accounts
+      </p>
+      <div class="columns">
+        <div class="column">
+          <account-card :account="roles.src.account" role="src" v-on:login="onLogin" v-on:logout="logout"
+            v-on:timedout="logout">
+          </account-card>
         </div>
-        <div class="box" v-if=" roles.dst.account && roles.src.account">
-            <div class="field">
-            </div>
-            <div class="field">
-                <label class="label">
-                    Existing subreddits:
-                </label>
-                <div class="control">
-                    <label class="radio">
-                        <input name="replace-merge-subreds" type="radio" v-model="replaceMergeSubs" value="replace">
-                        Replace
-                    </label>
-                    <label class="radio">
-                        <input name="replace-merge-subreds" type="radio" v-model="replaceMergeSubs" value="merge">
-                        Merge
-                    </label>
-                </div>
-            </div>
-            <hr>
-            <button :class="{'is-loading': tasks.subTrans.isActive(), 'is-success': tasks.subTrans.isDone()}" @click="transferSubreddits"
-                    class="button is-medium is-link">
-                <span>Transfer <strong>Subreddits</strong> <i v-if="tasks.subTrans.isDone()" class="fa fa-check"></i></span></button>
-            <button :class="{'is-loading': tasks.preTrans.isActive(), 'is-success': tasks.preTrans.isDone()}" @click="transferPrefs"
-                    class="button is-medium is-link">
-                <span>Transfer <strong>Preferences</strong> <i v-if="tasks.preTrans.isDone()" class="fa fa-check"></i> </span></button>
+        <div class="column is-narrow has-text-centered"
+          style="display: flex; align-items: center; justify-content: center;">
+          <button @click="reverseAccounts" class="button" aria-label="swap accounts" title="swap"><span><i
+                class="fas fa-exchange-alt"></i></span></button>
         </div>
-        <div class="box" v-for="task in activeTasks">
-            <progress class="progress is-info" :value="task.steps" :max="task.maxSteps">{{task.text}}</progress>
+        <div class="column">
+          <account-card :account="roles.dst.account" role="dst" v-on:login="onLogin" v-on:logout="logout"
+            v-on:timedout="logout">
+          </account-card>
         </div>
+      </div>
+      <div class="box" v-if=" roles.dst.account && roles.src.account">
+        <div class="field">
+        </div>
+        <div class="field">
+          <label class="label">
+            Existing subreddits:
+          </label>
+          <div class="control">
+            <label class="radio">
+              <input name="replace-merge-subreds" type="radio" v-model="replaceMergeSubs" value="replace">
+              Replace
+            </label>
+            <label class="radio">
+              <input name="replace-merge-subreds" type="radio" v-model="replaceMergeSubs" value="merge">
+              Merge
+            </label>
+          </div>
+        </div>
+        <hr>
+        <button :class="{'is-loading': tasks.subTrans.isActive(), 'is-success': tasks.subTrans.isDone()}"
+          @click="transferSubreddits" class="button is-medium is-link">
+          <span>Transfer <strong>Subreddits</strong> <i v-if="tasks.subTrans.isDone()"
+              class="fa fa-check"></i></span></button>
+        <button :class="{'is-loading': tasks.preTrans.isActive(), 'is-success': tasks.preTrans.isDone()}"
+          @click="transferPrefs" class="button is-medium is-link">
+          <span>Transfer <strong>Preferences</strong> <i v-if="tasks.preTrans.isDone()" class="fa fa-check"></i>
+          </span></button>
+      </div>
+      <div class="box" v-for="task in activeTasks">
+        <progress class="progress is-info" :value="task.steps" :max="task.maxSteps">{{task.text}}</progress>
+      </div>
     </div>
-</section>
+  </section>
 
 </body>
 <script>
 
 
-    Vue.component('account-card', {
-        template: `
+  Vue.component('account-card', {
+    template: `
             <div class="card">
                 <header class="card-header"><p class="card-header-title is-size-5">
                     {{role === 'src' ? 'Source' : 'Destination'}}
@@ -122,355 +172,356 @@
                     </div>
                 </div>
             </div>  `,
-        props: {
-            role: {
-                type: String,
-                validator: (val) => ['src', 'dst'].includes(val)
-            },
-            account: {
-                type: Object
-            },
+    props: {
+      role: {
+        type: String,
+        validator: (val) => ['src', 'dst'].includes(val)
+      },
+      account: {
+        type: Object
+      },
 
-        },
-        data: () => ({
-            loginInProgress: false,
-            msg: null,
-            isTimedOut: false,
-            timeOutHandle: null,
-        }),
-        methods: {
-            setMsg(text) {
-                this.msg = {text: text}
-            },
-            setErr(text) {
-                this.msg = {text: text, isError: true}
-            },
-            clearMsg() {
-                this.msg = null;
-            },
+    },
+    data: () => ({
+      loginInProgress: false,
+      msg: null,
+      isTimedOut: false,
+      timeOutHandle: null,
+    }),
+    methods: {
+      setMsg(text) {
+        this.msg = {text: text}
+      },
+      setErr(text) {
+        this.msg = {text: text, isError: true}
+      },
+      clearMsg() {
+        this.msg = null;
+      },
 
-            startLogin() {
-                const redirectUrl = window.location.origin + '/return.html';
-                const state = this.role;
-                let popup = window.open(`https://www.reddit.com/api/v1/authorize?client_id=${client_id}&response_type=code&state=${state}&redirect_uri=${redirectUrl}&duration=temporary&scope=account,mysubreddits,subscribe,identity`, '_blank');
-                if (popup === null) {
-                    this.setErr("Unable to open login page. Allow popups and try again?");
-                    return
-                }
-                this.loginInProgress = true;
-                this.isTimedOut = false;
-                this.setMsg("Waiting for you to log in :)")
-                let timer = window.setInterval(async () => {
-                    if (popup.closed) {
-                        this.loginInProgress = false;
-                        this.setErr("Login cancelled!")
-                        window.clearInterval(timer);
-                    }
-                    try {
-                        popup.location.href;
-                    } catch (e) {
-                        // so as to not spam console
-                        return
-                    }
-                    if (popup.location.href.includes(redirectUrl)) {
-                        this.setMsg("Getting access token")
-                        const params = new URLSearchParams(popup.location.search)
-                        console.log(popup.location.href)
-                        popup.close()
-                        window.clearInterval(timer);
-                        const gotState = params.get('state')
-                        const code = params.get('code')
-                        const err = params.get('error')
-                        if (err) {
-                            this.setErr("Login failed: " + err)
-                            this.loginInProgress = false;
-                            return
-                        }
-                        if (state !== gotState) {
-                            this.setErr(`received state "${gotState}" != sent state "${state}"... WTF`)
-                        }
-                        let resp = await fetch_retry("https://www.reddit.com/api/v1/access_token", {
-                            method: "POST",
-                            headers: {
-                                'Authorization': 'Basic ' + btoa(`${client_id}:`),
-                                'content-type': 'application/x-www-form-urlencoded'
-                            },
-                            body: `grant_type=authorization_code&code=${code}&redirect_uri=${redirectUrl}`
-                        })
-                        let x = await resp.json()
-                        console.log('access_token -> ', x)
-                        if (this.timeOutHandle !== null) {
-                            window.clearTimeout(this.timeOutHandle);
-                        }
-                        this.timeOutHandle = window.setTimeout(() => {
-                            this.isTimedOut = true;
-                            this.$emit('timedout', this.role);
-                            this.timeOutHandle = null;
-                        }, x['expires_in'] * 1000);
-
-                        const token = x['access_token'];
-                        if (!token) {
-                            this.setErr("Failed to get token: " + x.error)
-                            this.loginInProgress = false;
-                            return
-                        }
-                        this.clearMsg()
-                        this.loginInProgress = false;
-                        this.$emit('login', this.role, token);
-                    }
-                }, 100);
+      startLogin() {
+        const redirectUrl = window.location.origin + '/return.html';
+        const state = this.role;
+        let popup = window.open(`https://www.reddit.com/api/v1/authorize?client_id=${client_id}&response_type=code&state=${state}&redirect_uri=${redirectUrl}&duration=temporary&scope=account,mysubreddits,subscribe,identity`, '_blank');
+        if (popup === null) {
+          this.setErr("Unable to open login page. Allow popups and try again?");
+          return
+        }
+        this.loginInProgress = true;
+        this.isTimedOut = false;
+        this.setMsg("Waiting for you to log in :)")
+        let timer = window.setInterval(async () => {
+          if (popup.closed) {
+            this.loginInProgress = false;
+            this.setErr("Login cancelled!")
+            window.clearInterval(timer);
+          }
+          try {
+            popup.location.href;
+          } catch (e) {
+            // so as to not spam console
+            return
+          }
+          if (popup.location.href.includes(redirectUrl)) {
+            this.setMsg("Getting access token")
+            const params = new URLSearchParams(popup.location.search)
+            console.log(popup.location.href)
+            popup.close()
+            window.clearInterval(timer);
+            const gotState = params.get('state')
+            const code = params.get('code')
+            const err = params.get('error')
+            if (err) {
+              this.setErr("Login failed: " + err)
+              this.loginInProgress = false;
+              return
             }
-        }
-
-
-    });
-    class Task {
-        constructor(maxSteps) {
-            this.maxSteps = maxSteps;
-            this.steps = 0;
-            this.text = "";
-        }
-        isActive() {
-            return this.steps < this.maxSteps;
-        }
-
-        isDone() {
-            return this.steps > 0 && !this.isActive();
-        }
-        toString() {
-            return (this.text?this.text + ' ':'') +
-                    `[ ${this.steps} / ${this.maxSteps} ]`;
-
-        }
-        update(steps=null, text=null) {
-            if(steps!==null) {
-                this.steps += steps;
+            if (state !== gotState) {
+              this.setErr(`received state "${gotState}" != sent state "${state}"... WTF`)
             }
-            if(text!==null) {
-                this.text = text;
+            let resp = await fetch_retry("https://www.reddit.com/api/v1/access_token", {
+              method: "POST",
+              headers: {
+                'Authorization': 'Basic ' + btoa(`${client_id}:`),
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              body: `grant_type=authorization_code&code=${code}&redirect_uri=${redirectUrl}`
+            })
+            let x = await resp.json()
+            console.log('access_token -> ', x)
+            if (this.timeOutHandle !== null) {
+              window.clearTimeout(this.timeOutHandle);
             }
-        }
-        done(text=null){
-            this.steps = this.maxSteps;
-            if (text!== null) {
-                this.text = text;
+            this.timeOutHandle = window.setTimeout(() => {
+              this.isTimedOut = true;
+              this.$emit('timedout', this.role);
+              this.timeOutHandle = null;
+            }, x['expires_in'] * 1000);
+
+            const token = x['access_token'];
+            if (!token) {
+              this.setErr("Failed to get token: " + x.error)
+              this.loginInProgress = false;
+              return
             }
-        }
-    }
-    const app = new Vue({
-        el: '#app',
-        data: {
-            roles: {
-                src: {
-                    account: null,
-                },
-                dst: {
-                    account: null,
-                }
-            },
-            replaceMergeSubs: 'merge',
-            tasks: {
-                'subTrans':new Task(),
-                'preTrans':new Task(),
-            }
-        },
-        computed: {
-            neededSubs() {
-                if(this.roles.src.account && !this.roles.src.account.gettingSubs && this.roles.dst.account && !this.roles.dst.account.gettingSubs ) {
-                    return this.roles.src.account.subs.filter(x => !this.roles.dst.account.subs.includes(x))
-                } else {
-                    return [];
-                }
-            },
-            unwantedSubs() {
-                if(this.roles.src.account && !this.roles.src.account.gettingSubs && this.roles.dst.account && !this.roles.dst.account.gettingSubs ) {
-                     return this.roles.dst.account.subs.filter(x => !this.roles.src.account.subs.includes(x))
-                } else {
-                    return [];
-                }
-            },
-            activeTasks() {
-                return Object.values(this.tasks).filter(t=>t.isActive());
-            }
-        },
-        methods: {
-            async onLogin(role, token) {
-                let acct = new Account(token);
-                this.roles[role].account = acct;
-                await acct.getBasicInfo();
-                await acct.getSubscribed();
-            },
-            logout(role) {
-                this.roles[role].account = null;
-            },
-            reverseAccounts() {
-                const temp = this.roles.src.account;
-                this.roles.src.account = this.roles.dst.account;
-                this.roles.dst.account = temp;
-            },
-            async transferSubreddits() {
-
-                this.tasks.subTrans = new Task(this.neededSubs.length);
-                if (this.replaceMergeSubs === 'replace') {
-                    this.tasks.subTrans.maxSteps += this.unwantedSubs.length;
-                    await this.roles.dst.account.unsubFrom(this.unwantedSubs, (n)=>this.tasks.subTrans.update(n));
-                }
-                await this.roles.dst.account.subTo(this.neededSubs, (n)=>this.tasks.subTrans.update(n));
-                this.tasks.subTrans.done();
-            },
-            async transferPrefs() {
-                this.tasks.preTrans = new Task(2);
-                let srcPrefs = await this.roles.src.account.getPrefs();
-                console.log(srcPrefs);
-                this.tasks.preTrans.update(1);
-                let resp = await this.roles.dst.account.setPrefs(srcPrefs);
-                console.log(resp);
-                this.tasks.preTrans.done();
-            }
-        },
-
-    });
-
-    const client_id = window.location.origin.includes("netlify") ? 'Vv6BsRq-n85u5A' : '_VreirUvzr8nzA';
-    const base = 'https://oauth.reddit.com/';
-
-    class Account {
-        constructor(token) {
-            this.token = token;
-            this.info = {};
-            this.gettingSubs = false;
-            this.subs = [];
-        }
-
-        async fetch(url, opts = {}, prefix = base) {
-            const h = {
-                "Authorization": "Bearer " + this.token
-            };
-            if (!opts.hasOwnProperty('headers')) {
-                opts.headers = {};
-            }
-            Object.assign(opts.headers, h);
-
-            if (!opts.headers.hasOwnProperty("Content-Type")) {
-                opts.headers["Content-Type"] = "application/x-www-form-urlencoded";
-            }
-            return fetch_retry(prefix + url, opts);
-        }
-
-        async getBasicInfo() {
-            let resp = await this.fetch('/api/v1/me');
-            let x = await resp.json();
-            this.info = x;
-            return x;
-        }
-
-        async getSubscribed() {
-            if (this.gettingSubs) {
-                return
-            }
-            this.subs = [];
-            this.gettingSubs = true;
-            let after = "";
-            while (true) {
-                let x = await this.fetch(`/subreddits/mine/subscriber?limit=100&after=${after}`)
-                x = await x.json()
-                for (const item of x.data.children) {
-                    this.subs.push(item.data.display_name)
-                }
-                after = x.data.after
-                if (!after) {
-                    break
-                }
-            }
-            this.gettingSubs = false;
-        }
-
-        async unsubFrom(subs, callback=null) {
-            let unsubscribeQueue = [...subs];
-            while (unsubscribeQueue.length > 0) {
-                let batch = unsubscribeQueue.splice(0, 200);
-                let resp = await this.fetch(`api/subscribe`, {
-                    method: 'POST',
-                    body: `action=unsub&sr_name=${batch.join(',')}`
-                })
-                if (resp.ok) {
-                    if(callback !== null){
-                        callback(batch.length);
-                    }
-                }
-                let x = await resp.json()
-                console.log('unsub ->', x)
-
-            }
-        }
-
-        async subTo(subs, callback=null) {
-            let forbidden = [];
-
-            const do_sub = async (subs) => {
-                let x = await this.fetch(`api/subscribe`, {
-                    method: 'POST',
-                    body: `action=sub&sr_name=${subs.join(',')}`
-                })
-                if (x.ok) {
-                    if (callback !== null) {
-                        callback(subs.length)
-                    }
-                } else {
-                    throw x;
-                }
-            };
-
-            let subscribeQueue = [...subs];
-            while (subscribeQueue.length > 0) {
-                let batch = subscribeQueue.splice(0, 25);
-                try {
-                    await do_sub(batch);
-                } catch (e) {
-                    for (const subred of batch) {
-                        try {
-                             await do_sub([subred]);
-                        }
-                        catch (e) {
-                            forbidden.push(subred)
-                        }
-                    }
-                }
-            }
-            if (forbidden.length > 0) {
-                alert(forbidden.join(',') + " are forbidden (quarantined, private, etc)")
-            }
-            callback(forbidden.length);
-            this.getSubscribed();
-        }
-
-        async getPrefs() {
-            let resp = await this.fetch('/api/v1/me/prefs');
-            return await resp.json();
-        }
-
-        async setPrefs(prefs) {
-            let resp = await this.fetch('/api/v1/me/prefs', {
-                method: "PATCH",
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(prefs)
-            });
-            return await resp.json();
-        }
-
+            this.clearMsg()
+            this.loginInProgress = false;
+            this.$emit('login', this.role, token);
+          }
+        }, 100);
+      }
     }
 
 
-    const fetch_retry = async (url, options, n = 50) => {
-        let error;
-        for (let i = 0; i < n; i++) {
+  });
+  class Task {
+    constructor(maxSteps) {
+      this.maxSteps = maxSteps;
+      this.steps = 0;
+      this.text = "";
+    }
+    isActive() {
+      return this.steps < this.maxSteps;
+    }
+
+    isDone() {
+      return this.steps > 0 && !this.isActive();
+    }
+    toString() {
+      return (this.text ? this.text + ' ' : '') +
+        `[ ${this.steps} / ${this.maxSteps} ]`;
+
+    }
+    update(steps = null, text = null) {
+      if (steps !== null) {
+        this.steps += steps;
+      }
+      if (text !== null) {
+        this.text = text;
+      }
+    }
+    done(text = null) {
+      this.steps = this.maxSteps;
+      if (text !== null) {
+        this.text = text;
+      }
+    }
+  }
+  const app = new Vue({
+    el: '#app',
+    data: {
+      roles: {
+        src: {
+          account: null,
+        },
+        dst: {
+          account: null,
+        }
+      },
+      replaceMergeSubs: 'merge',
+      tasks: {
+        'subTrans': new Task(),
+        'preTrans': new Task(),
+      }
+    },
+    computed: {
+      neededSubs() {
+        if (this.roles.src.account && !this.roles.src.account.gettingSubs && this.roles.dst.account && !this.roles.dst.account.gettingSubs) {
+          return this.roles.src.account.subs.filter(x => !this.roles.dst.account.subs.includes(x))
+        } else {
+          return [];
+        }
+      },
+      unwantedSubs() {
+        if (this.roles.src.account && !this.roles.src.account.gettingSubs && this.roles.dst.account && !this.roles.dst.account.gettingSubs) {
+          return this.roles.dst.account.subs.filter(x => !this.roles.src.account.subs.includes(x))
+        } else {
+          return [];
+        }
+      },
+      activeTasks() {
+        return Object.values(this.tasks).filter(t => t.isActive());
+      }
+    },
+    methods: {
+      async onLogin(role, token) {
+        let acct = new Account(token);
+        this.roles[role].account = acct;
+        await acct.getBasicInfo();
+        await acct.getSubscribed();
+      },
+      logout(role) {
+        this.roles[role].account = null;
+      },
+      reverseAccounts() {
+        const temp = this.roles.src.account;
+        this.roles.src.account = this.roles.dst.account;
+        this.roles.dst.account = temp;
+      },
+      async transferSubreddits() {
+
+        this.tasks.subTrans = new Task(this.neededSubs.length);
+        if (this.replaceMergeSubs === 'replace') {
+          this.tasks.subTrans.maxSteps += this.unwantedSubs.length;
+          await this.roles.dst.account.unsubFrom(this.unwantedSubs, (n) => this.tasks.subTrans.update(n));
+        }
+        await this.roles.dst.account.subTo(this.neededSubs, (n) => this.tasks.subTrans.update(n));
+        this.tasks.subTrans.done();
+      },
+      async transferPrefs() {
+        this.tasks.preTrans = new Task(2);
+        let srcPrefs = await this.roles.src.account.getPrefs();
+        console.log(srcPrefs);
+        this.tasks.preTrans.update(1);
+        let resp = await this.roles.dst.account.setPrefs(srcPrefs);
+        console.log(resp);
+        this.tasks.preTrans.done();
+      }
+    },
+
+  });
+
+  const client_id = window.location.origin.includes("netlify") ? 'Vv6BsRq-n85u5A' : '_VreirUvzr8nzA';
+  const base = 'https://oauth.reddit.com/';
+
+  class Account {
+    constructor(token) {
+      this.token = token;
+      this.info = {};
+      this.gettingSubs = false;
+      this.subs = [];
+    }
+
+    async fetch(url, opts = {}, prefix = base) {
+      const h = {
+        "Authorization": "Bearer " + this.token
+      };
+      if (!opts.hasOwnProperty('headers')) {
+        opts.headers = {};
+      }
+      Object.assign(opts.headers, h);
+
+      if (!opts.headers.hasOwnProperty("Content-Type")) {
+        opts.headers["Content-Type"] = "application/x-www-form-urlencoded";
+      }
+      return fetch_retry(prefix + url, opts);
+    }
+
+    async getBasicInfo() {
+      let resp = await this.fetch('/api/v1/me');
+      let x = await resp.json();
+      this.info = x;
+      return x;
+    }
+
+    async getSubscribed() {
+      if (this.gettingSubs) {
+        return
+      }
+      this.subs = [];
+      this.gettingSubs = true;
+      let after = "";
+      while (true) {
+        let x = await this.fetch(`/subreddits/mine/subscriber?limit=100&after=${after}`)
+        x = await x.json()
+        for (const item of x.data.children) {
+          this.subs.push(item.data.display_name)
+        }
+        after = x.data.after
+        if (!after) {
+          break
+        }
+      }
+      this.gettingSubs = false;
+    }
+
+    async unsubFrom(subs, callback = null) {
+      let unsubscribeQueue = [...subs];
+      while (unsubscribeQueue.length > 0) {
+        let batch = unsubscribeQueue.splice(0, 200);
+        let resp = await this.fetch(`api/subscribe`, {
+          method: 'POST',
+          body: `action=unsub&sr_name=${batch.join(',')}`
+        })
+        if (resp.ok) {
+          if (callback !== null) {
+            callback(batch.length);
+          }
+        }
+        let x = await resp.json()
+        console.log('unsub ->', x)
+
+      }
+    }
+
+    async subTo(subs, callback = null) {
+      let forbidden = [];
+
+      const do_sub = async (subs) => {
+        let x = await this.fetch(`api/subscribe`, {
+          method: 'POST',
+          body: `action=sub&sr_name=${subs.join(',')}`
+        })
+        if (x.ok) {
+          if (callback !== null) {
+            callback(subs.length)
+          }
+        } else {
+          throw x;
+        }
+      };
+
+      let subscribeQueue = [...subs];
+      while (subscribeQueue.length > 0) {
+        let batch = subscribeQueue.splice(0, 25);
+        try {
+          await do_sub(batch);
+        } catch (e) {
+          for (const subred of batch) {
             try {
-                return await fetch(url, options);
-            } catch (err) {
-                error = err;
+              await do_sub([subred]);
             }
+            catch (e) {
+              forbidden.push(subred)
+            }
+          }
         }
-        throw error;
-    };
+      }
+      if (forbidden.length > 0) {
+        alert(forbidden.join(',') + " are forbidden (quarantined, private, etc)")
+      }
+      callback(forbidden.length);
+      this.getSubscribed();
+    }
+
+    async getPrefs() {
+      let resp = await this.fetch('/api/v1/me/prefs');
+      return await resp.json();
+    }
+
+    async setPrefs(prefs) {
+      let resp = await this.fetch('/api/v1/me/prefs', {
+        method: "PATCH",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(prefs)
+      });
+      return await resp.json();
+    }
+
+  }
+
+
+  const fetch_retry = async (url, options, n = 50) => {
+    let error;
+    for (let i = 0; i < n; i++) {
+      try {
+        return await fetch(url, options);
+      } catch (err) {
+        error = err;
+      }
+    }
+    throw error;
+  };
 </script>
+
 </html>
